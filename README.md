@@ -52,7 +52,7 @@ streamlit run app.py
 8. Once the code is working, the final scraper code will be displayed in the "Final Code" section.
 
 ## Examples
-There are a few examples of successful runs in the (successes folder)[successes/]
+There are a few examples of successful runs in the [successes folder](successes/)
 
 ## Limitations
 
@@ -60,6 +60,6 @@ There are a few examples of successful runs in the (successes folder)[successes/
 
 ## Ackowledgements
 
-* I relied heavily on (TaxyAI's browser-extension)[https://github.com/TaxyAI/browser-extension] for the HTML simplification logic. I translated their logic from typescript to Python using GPT-4 to save some time :)
+* I relied heavily on [TaxyAI's browser-extension](https://github.com/TaxyAI/browser-extension) for the HTML simplification logic. I translated their logic from typescript to Python using GPT-4 to save some time :)
 * [Promptlayer](https://promptlayer.com/home) made my life a lot easier when debugging the long chains of prompts used in this project
 

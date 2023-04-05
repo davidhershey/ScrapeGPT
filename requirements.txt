@@ -1,0 +1,12 @@
+langchain
+python-dotenv
+openai
+tiktoken
+streamlit
+streamlit-ace
+backoff
+promptlayer
+beautifulsoup4
+requests
+requests-html
+tiktoken

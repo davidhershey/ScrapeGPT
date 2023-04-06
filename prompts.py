@@ -1,4 +1,3 @@
-
 def system_prompt():
     return "You are ScrapeGPT, a helpful assistant that helps write python scripts to scrape websites."
 
@@ -10,6 +9,7 @@ Website: {url}
 What to scrape: {instructions}
 
 What should we name our function? Respond with only the function name."""
+
 
 def look_for_clues_prompt(url, task, idx, num_chunks, chunk):
     return f"""Our goal is to scrape {url}, and we want to scrape {task}.
@@ -27,8 +27,9 @@ For each piece of relevant and new information, include a condensed snippet of H
 
 If there is no relevant information, simply respond 'No new information'."""
 
+
 def compress_knowledge_base_prompt(kb, url, task):
-    notes = '\n'.join(kb)
+    notes = "\n".join(kb)
     return f"""Our goal is to scrape {url}, and we want to scrape {task}.
 
 I just finished going through the html, and took some notes about where to find the relevant information. Here are my notes:
@@ -54,6 +55,7 @@ from simplify import fetch_and_simplify_dom
 simplified_html = fetch_and_simplify_dom(url)
 ```
 """
+
 
 def debug_error_prompt(function_name, stdout, stderr):
     return f"""When I ran the scraper, I got an error with this output:

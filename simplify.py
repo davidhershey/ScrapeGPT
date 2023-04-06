@@ -1,11 +1,9 @@
-
 from typing import List, Tuple
 import random
 import copy
 import re
 import time
 from bs4 import BeautifulSoup
-import requests
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
@@ -14,11 +12,12 @@ from selenium.webdriver.chrome.options import Options
 
 TAXY_ELEMENT_SELECTOR = "data-taxy-element"
 
+
 def load_html(url):
     # Configure the Chrome options to run in headless mode
     chrome_options = Options()
-    chrome_options.add_argument('--headless')
-    chrome_options.add_argument('--disable-gpu')
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--disable-gpu")
 
     browser = webdriver.Chrome(options=chrome_options)
     browser.get(url)
@@ -31,6 +30,7 @@ def load_html(url):
     browser.quit()
 
     return html
+
 
 def is_interactive(element, style):
     return (
@@ -111,36 +111,40 @@ def get_simplified_dom(html):
     simplified_dom = generate_simplified_dom(dom.body, interactive_elements)
     return simplified_dom.prettify()
 
+
 def fetch_and_simplify_dom(url):
     html = load_html(url)
     simplified_html = get_simplified_dom(html)
     return simplified_html
 
+
 def generate_simplified_dom(element, interactive_elements):
     from bs4.element import NavigableString
 
     if isinstance(element, NavigableString) and element.strip():
-        return element.text[:int(len(element.text)/2)]
+        return element.text[: int(len(element.text) / 2)]
         # return element + ' '
 
     if not (element.name):
         return None
 
     # print(element.attrs)
-    is_visible = element.attrs.get('data-visible') == 'True'
+    is_visible = element.attrs.get("data-visible") == "True"
     if not is_visible:
         return None
-    children = [generate_simplified_dom(c, interactive_elements) for c in element.children]
+    children = [
+        generate_simplified_dom(c, interactive_elements) for c in element.children
+    ]
     children = [c for c in children if c is not None]
-    
 
-    if element.name == 'body':
+    if element.name == "body":
         children = [c for c in children if not isinstance(c, str)]
         children = [c for c in children if not isinstance(c, NavigableString)]
 
-
-    interactive = element.attrs.get('data-interactive') == 'True' or element.has_attr('role')
-    has_label = element.has_attr('aria-label') or element.has_attr('name')
+    interactive = element.attrs.get("data-interactive") == "True" or element.has_attr(
+        "role"
+    )
+    has_label = element.has_attr("aria-label") or element.has_attr("name")
     include_node = interactive or has_label
 
     if not include_node and len(children) == 0:
@@ -149,20 +153,21 @@ def generate_simplified_dom(element, interactive_elements):
     #     return children[0]
 
     from bs4.element import Tag
+
     container = Tag(name=element.name)
 
     allowed_attributes = [
-        'aria-label',
-        'data-name',
-        'name',
-        'type',
-        'placeholder',
-        'value',
-        'role',
-        'title',
-        'class',
-        'id',
-        'href',
+        "aria-label",
+        "data-name",
+        "name",
+        "type",
+        "placeholder",
+        "value",
+        "role",
+        "title",
+        "class",
+        "id",
+        "href",
     ]
 
     for attr in allowed_attributes:
@@ -178,14 +183,15 @@ def generate_simplified_dom(element, interactive_elements):
 
     return container
 
+
 if __name__ == "__main__":
-    url = 'https://boardgamegeek.com/hotness'
+    url = "https://boardgamegeek.com/hotness"
     html = load_html(url)
     simplified_html = get_simplified_dom(html)
     base_html = BeautifulSoup(html, "html.parser").prettify()
     print(len(base_html))
     print(len(simplified_html))
-    with open('simplified.html', 'w') as f:
+    with open("simplified.html", "w") as f:
         f.write(simplified_html)
-    with open('base.html', 'w') as f:
+    with open("base.html", "w") as f:
         f.write(base_html)

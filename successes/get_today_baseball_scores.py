@@ -2,10 +2,10 @@
 # task: A list of the scores of every baseball game that happened today
 
 from bs4 import BeautifulSoup
-from simplify import get_simplified_dom
+from simplify import fetch_and_simplify_dom
 
 def get_today_baseball_scores(url):
-    simplified_html = get_simplified_dom(url)
+    simplified_html = fetch_and_simplify_dom(url)
     soup = BeautifulSoup(simplified_html, 'html.parser')
 
     game_summaries_div = soup.find('div', class_='game_summaries')

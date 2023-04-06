@@ -4,7 +4,7 @@ import re
 import backoff
 import streamlit as st
 
-from prompts import extract_fn_name_prompt, system_prompt, debug_error_prompt, write_scraper_prompt
+from prompts import extract_fn_name_prompt, system_prompt, debug_error_prompt, write_scraper_prompt, look_for_clues_prompt, compress_knowledge_base_prompt
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -77,3 +77,32 @@ def try_debug(code, log, function_name, stdout, stderr, model='gpt-4'):
     else:
         code = re.search('```py([^`]*)```', response).group(1)
     return code, log, response
+
+@st.cache_data(persist=True)
+def look_for_clues(chunk, url, idx, num_chunks, task):
+    prompt = look_for_clues_prompt(url, task, idx, num_chunks, chunk)
+    
+    completion = chat_gpt_with_backoff(
+      model="gpt-3.5-turbo",
+      temperature=0.0,
+      max_tokens=1000,
+      messages=[
+            {"role": "system", "content": system_prompt()},
+            {"role": "user", "content": prompt}
+      ]
+    )
+    return completion["choices"][0]["message"]["content"]
+
+@st.cache_data(persist=True)
+def compress_knowledge_base(kb, url, task):
+    prompt = compress_knowledge_base_prompt(kb, url, task)
+    completion = chat_gpt_with_backoff(
+      model="gpt-4",
+      temperature=0.0,
+      max_tokens=1000,
+      messages=[
+            {"role": "system", "content": system_prompt()},
+            {"role": "user", "content": prompt}
+      ]
+    )
+    return completion["choices"][0]["message"]["content"]

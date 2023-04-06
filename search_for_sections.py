@@ -1,42 +1,15 @@
-from simplify import get_simplified_dom
+from simplify import fetch_and_simplify_dom
 from utils import split_text_into_chunks
 from gpt_tools import chat_gpt_with_backoff
 from dotenv import load_dotenv
 load_dotenv()
 
-from prompts import system_prompt, look_for_clues_prompt, compress_knowledge_base_prompt
+from gpt_tools import look_for_clues, compress_knowledge_base
 
 
-def look_for_clues(chunk, url, idx, num_chunks, task):
-    prompt = look_for_clues_prompt(url, task, idx, num_chunks, chunk)
-    
-    completion = chat_gpt_with_backoff(
-      model="gpt-3.5-turbo",
-      temperature=0.0,
-      max_tokens=1000,
-      messages=[
-            {"role": "system", "content": system_prompt()},
-            {"role": "user", "content": prompt}
-      ]
-    )
-    return completion["choices"][0]["message"]["content"]
-
-
-def compress_knowledge_base(kb, url, task):
-    prompt = compress_knowledge_base_prompt(kb, url, task)
-    completion = chat_gpt_with_backoff(
-      model="gpt-4",
-      temperature=0.0,
-      max_tokens=1000,
-      messages=[
-            {"role": "system", "content": system_prompt()},
-            {"role": "user", "content": prompt}
-      ]
-    )
-    return completion["choices"][0]["message"]["content"]
 
 def learn_from_html(url, task):
-    simplified_dom = get_simplified_dom(url)
+    simplified_dom = fetch_and_simplify_dom(url)
     chunks = split_text_into_chunks(simplified_dom)
     knowledge_base = []
     for i, chunk in enumerate(chunks):

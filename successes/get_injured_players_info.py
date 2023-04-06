@@ -2,10 +2,10 @@
 # task: A list of every injured player on every team. Include their name, team, position, status, and the comment field
 
 from bs4 import BeautifulSoup
-from simplify import get_simplified_dom
+from simplify import fetch_and_simplify_dom
 
 def get_injured_players_info(url):
-    simplified_html = get_simplified_dom(url)
+    simplified_html = fetch_and_simplify_dom(url)
     soup = BeautifulSoup(simplified_html, 'html.parser')
 
     wrapper = soup.find('div', class_='Wrapper Card__Content')

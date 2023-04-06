@@ -21,7 +21,9 @@ Part {idx} of {num_chunks}:
 {chunk}
 ```
 
-If any of the information we are trying to scrape is in this part, succinctly summarize the structure of the page in a way that would be helpful when we write the scraper. Include information about the tags so that we can scrape them effectively. Use bullet points.
+If any of the information we are trying to scrape is in this part, succinctly summarize the structure of the page in a way that would be helpful when we write the scraper. Include information about the tags so that we can scrape them effectively.
+
+For each piece of relevant and new information, include a condensed snippet of HTML that shows the relevant information we need for our scraper.
 
 If there is no relevant information, simply respond 'No new information'."""
 
@@ -47,8 +49,9 @@ Here are some notes I took about how I think we can solve this problem:
 
 Write a python script to complete this scraping task. Write a function called `{function_name}`. Make sure to strip any excess whitespace. I have a helper function that downloads and simplifies the HTML of a page that you should use, which should look like this:
 ```
-from simplify import get_simplified_dom
-simplified_html = get_simplified_dom(url)
+from simplify import fetch_and_simplify_dom
+
+simplified_html = fetch_and_simplify_dom(url)
 ```
 """
 

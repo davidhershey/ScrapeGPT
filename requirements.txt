@@ -1,4 +1,3 @@
-langchain
 python-dotenv
 openai
 tiktoken
@@ -8,5 +7,5 @@ backoff
 promptlayer
 beautifulsoup4
 requests
-requests-html
 tiktoken
+selenium

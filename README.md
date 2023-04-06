@@ -32,13 +32,18 @@ pip install -r requirements.txt
 OPENAI_API_KEY="YOUR_KEY"
 ```
 
-5. Run the Streamlit app:
+5. [optionally set up [Promptlayer](https://promptlayer.com/home)] Set the `PROMPTLAYER_API_KEY` environment variable to your PROMPTLAYER_API_KEY API key. You can also use a `.env` file, which should look like this:
+```
+PROMPTLAYER_API_KEY="YOUR_KEY"
+```
+
+6. Run the Streamlit app:
 
 ```
 streamlit run app.py
 ```
 
-6. Open the app in your browser using the URL provided in the terminal.
+7. Open the app in your browser using the URL provided in the terminal.
 
 ## Usage
 
@@ -57,6 +62,11 @@ There are a few examples of successful runs in the [successes folder](successes/
 ## Limitations
 
 * All of the web scrapers have a dependency on code that is used to annotate and simplify the HTML. That code is in `simplify.py`, and needs to be available to your scraper code. (The simplificaiton happens to reduce the number of tokens sent to GPT-4).
+* Right now can write scrapers for a single page
+
+## TODO
+
+* Generate unit tests by looking at the simplified dom which should provide better auto-debugging
 
 ## Ackowledgements
 

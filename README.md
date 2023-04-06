@@ -61,7 +61,7 @@ There are a few examples of successful runs in the [successes folder](successes/
 
 ## Limitations
 
-* All of the web scrapers have a dependency on code that is used to annotate and simplify the HTML. That code is in `simplify.py`, and needs to be available to your scraper code. (The simplificaiton happens to reduce the number of tokens sent to GPT-4).
+* All of the web scrapers have a dependency on code that is used to annotate and simplify the HTML. That code is in `simplify.py`, and needs to be available to your scraper code. (The simplification is used to reduce the number of tokens sent to GPT-4).
 * Right now can write scrapers for a single page
 
 ## TODO

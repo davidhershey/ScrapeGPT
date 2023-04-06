@@ -3,17 +3,11 @@ import re
 
 import backoff
 import streamlit as st
-
-from prompts import (
-    extract_fn_name_prompt,
-    system_prompt,
-    debug_error_prompt,
-    write_scraper_prompt,
-    look_for_clues_prompt,
-    compress_knowledge_base_prompt,
-)
-
 from dotenv import load_dotenv
+
+from prompts import (compress_knowledge_base_prompt, debug_error_prompt,
+                     extract_fn_name_prompt, look_for_clues_prompt,
+                     system_prompt, write_scraper_prompt)
 
 load_dotenv()
 

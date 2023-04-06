@@ -1,10 +1,11 @@
+from dotenv import load_dotenv
+
 from simplify import fetch_and_simplify_dom
 from utils import split_text_into_chunks
-from dotenv import load_dotenv
 
 load_dotenv()
 
-from gpt_tools import look_for_clues, compress_knowledge_base
+from gpt_tools import compress_knowledge_base, look_for_clues
 
 
 def learn_from_html(url, task):

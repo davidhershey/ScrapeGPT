@@ -1,7 +1,8 @@
 import os
 import re
-import subprocess
 import shutil
+import subprocess
+
 import tiktoken
 
 CODE_ROOT = "/tmp/st/"

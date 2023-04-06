@@ -1,10 +1,11 @@
 import streamlit as st
 from dotenv import load_dotenv
-from prompts import system_prompt, write_scraper_prompt
-from gpt_tools import generate_function_name, write_scraper, try_debug
 from streamlit_ace import st_ace
-from utils import run_code, write_to_disk, redact_test_output
+
+from gpt_tools import generate_function_name, try_debug, write_scraper
+from prompts import system_prompt, write_scraper_prompt
 from search_for_sections import get_scraping_instructions
+from utils import redact_test_output, run_code, write_to_disk
 
 st.set_page_config(layout="wide")
 

@@ -1,8 +1,9 @@
-from typing import List, Tuple
-import random
 import copy
+import random
 import re
 import time
+from typing import List, Tuple
+
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options

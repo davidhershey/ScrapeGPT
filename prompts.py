@@ -21,9 +21,7 @@ Part {idx} of {num_chunks}:
 {chunk}
 ```
 
-If any of the information we are trying to scrape is in this part, succinctly summarize the structure of the page in a way that would be helpful when we write the scraper. Include information about the tags so that we can scrape them effectively.
-
-For each piece of relevant and new information, include a condensed snippet of HTML that shows the relevant information we need for our scraper.
+If any of the information we are trying to scrape is in this part, succinctly summarize the structure of the page in a way that would be helpful when we write the scraper. Include information about the tags so that we can scrape them effectively. Small snippets of HTML might be helpful!
 
 If there is no relevant information, simply respond 'No new information'."""
 

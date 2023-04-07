@@ -9,7 +9,7 @@ from utils import redact_test_output, run_code, write_to_disk
 
 st.set_page_config(layout="wide")
 
-st.title("Build and Scrapers Python with GPT-4")
+st.title("Build Python Web Scrapers with GPT-4")
 
 load_dotenv()
 

@@ -1,15 +1,14 @@
-# Web Scraper Builder with GPT-4
+# ScrapeGPT
 
-This project is a web scraper builder that uses GPT-4 to automatically generate Python scripts for scraping websites based on user input. The app is built using Streamlit and allows users to input a URL and describe the data they want to scrape. The app then generates a Python script using GPT-4, which can be edited and debugged within the app.
+ScrapeGPT is a web scraper builder that uses GPT-4 to automatically generate Python scripts for scraping websites based on user input. The app is built using Streamlit and allows users to input a URL and describe the data they want to scrape. The app then:
+* Uses GPT-3.5 to iterate through the HTML to find the relevant information
+* Summarizes its learnings
+* Writes a web scraper
+* Self-heals to debug itself
 
 
 https://user-images.githubusercontent.com/11651858/230651046-7fee4c3f-2f78-4a7c-a9af-3e9055cf395a.mp4
 
-
-## Features
-
-- Automatically generate custom Python web scrapers using GPT-4
-- Automatically debug your scraper
 
 ## Installation
 
